@@ -6,21 +6,29 @@ namespace ComplexNumberTest
 {
     public class UnitTest1
     {
-        [Fact]
-        public void ModulusOfOneOneIsSqrtTwo()
+        [Theory]
+        [InlineData(0, 1, 1)]
+        [InlineData(1, 0, 1)]
+        [InlineData(0, 0, 0)]
+        public void ModulusTheory(double real, double imaginary, double expected)
         {
-            Complex c = new Complex(1.0, 1.0);
+            Complex c = new Complex(real, imaginary);
             double modulus = c.Modulus;
-            double sqrt2 = Math.Sqrt(2);
-            Assert.Equal(sqrt2, modulus);
+            Assert.Equal(expected, modulus);
         }
 
-        [Fact]
-        public void ConjugateofMinusIEqualsI()
+        [Theory]
+        [InlineData(1,1,1,-1)]
+        [InlineData(1,-1,1,1)]
+        [InlineData(1,0,1,0)]
+        [InlineData(3,5,3,-5)]
+        public void ConjugateTheory(double real, double imaginary,
+            double expectedReal, double expectedImaginary)
         {
-            Complex c1 = new Complex(0.0, -1.0);
+            Complex c1 = new Complex(real, imaginary);
             Complex c2 = Complex.Conjugate(c1);
-            Assert.Equal(c1.Imaginary, -c2.Imaginary);
+            Assert.Equal(expectedReal, c2.Real);
+            Assert.Equal(expectedImaginary, c2.Imaginary);
         }
 
         [Fact]
