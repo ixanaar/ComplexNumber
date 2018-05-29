@@ -22,5 +22,22 @@ namespace ComplexNumberTest
             Complex c2 = Complex.Conjugate(c1);
             Assert.Equal(c1.Imaginary, -c2.Imaginary);
         }
+
+        [Fact]
+        public void DivisionByZeroThrowsException()
+        {
+            Complex c1 = new Complex(1.0, 1.0);
+            Complex c2 = new Complex(0.0, 0.0);
+            Assert.Throws<DivideByZeroException>(() => Complex.Divide(c1, c2));
+        }
+
+        [Fact]
+        public void ReciprocalOfZeroEqualsZero()
+        {
+            Complex c1 = new Complex(0.0, 0.0);
+            Complex c2 = Complex.Reciprocal(c1);
+            Assert.Equal(0.0, c2.Real);
+            Assert.Equal(0.0, c2.Imaginary);
+        }
     }
 }
