@@ -34,6 +34,8 @@ namespace ComplexNumber
         public static Complex Subtract(Complex c1, Complex c2) => c1 - c2;
 
         public static Complex Multiply(Complex c1, Complex c2) => c1 * c2;
+
+        public static Complex Divide(Complex c1, Complex c2) => c1 / c2;
         #endregion
 
         #region Operator Overloads
@@ -49,6 +51,25 @@ namespace ComplexNumber
             double real = (c1.Real * c2.Real) - (c1.Imaginary * c2.Imaginary);
             double imaginary = (c1.Imaginary * c2.Real) - (c1.Real * c2.Imaginary);
             return new Complex(real, imaginary);
+        }
+
+        //using this formula https://en.wikipedia.org/wiki/Complex_number#Multiplication_and_division
+        public static Complex operator /(Complex c1, Complex c2)
+        {
+            double a = c1.Real;
+            double b = c2.Imaginary;
+            double c = c2.Real;
+            double d = c2.Imaginary;
+            if (c != 0 || d != 0)
+            {
+                double real = (a * c + b * d) / (Math.Pow(c, 2) + Math.Pow(d, 2));
+                double imaginary = (b * c - a * d) / (Math.Pow(c, 2) + Math.Pow(d, 2));
+                return new Complex(real, imaginary);
+            }
+            else
+            {
+                throw new DivideByZeroException();
+            }
         }
         #endregion
 
