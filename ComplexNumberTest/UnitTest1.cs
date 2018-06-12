@@ -36,6 +36,19 @@ namespace ComplexNumberTest
         }
         #endregion
 
+        #region Multiplication
+        [Theory]
+        [InlineData(1, 1, 1, 1, 0, 2)]
+        public void MultiplicationTheory(double c1R, double c1I, double c2R, double c2I, double expectedR, double expectedI)
+        {
+            Complex c1 = new Complex(c1R, c1I);
+            Complex c2 = new Complex(c2R, c2I);
+            Complex product = c1 * c2;
+            Assert.Equal(product.Real, expectedR);
+            Assert.Equal(product.Imaginary, expectedI);
+        }
+        #endregion
+
         [Theory]
         [InlineData(0, 1, 1)]
         [InlineData(1, 0, 1)]
