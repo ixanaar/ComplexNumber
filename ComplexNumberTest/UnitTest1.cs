@@ -6,6 +6,36 @@ namespace ComplexNumberTest
 {
     public class UnitTest1
     {
+        #region Addition
+        [Theory]
+        [InlineData(1,1,1,1,2,2)]
+        [InlineData(1,1,-1,-1,0,0)]
+        [InlineData(0,0,0,0,0,0)]
+        public void AdditionTheory(double c1R, double c1I, double c2R, double c2I, double expectedR, double expectedI)
+        {
+            Complex c1 = new Complex(c1R, c1I);
+            Complex c2 = new Complex(c2R, c2I);
+            Complex sum = c1 + c2;
+            Assert.Equal(sum.Real, expectedR);
+            Assert.Equal(sum.Imaginary, expectedI);
+        }
+        #endregion
+
+        #region Subtraction
+        [Theory]
+        [InlineData(1, 1, 1, 1, 0, 0)]
+        [InlineData(1, 1, -1, -1, 2, 2)]
+        [InlineData(0, 0, 0, 0, 0, 0)]
+        public void SubtractionTheory(double c1R, double c1I, double c2R, double c2I, double expectedR, double expectedI)
+        {
+            Complex c1 = new Complex(c1R, c1I);
+            Complex c2 = new Complex(c2R, c2I);
+            Complex sum = c1 - c2;
+            Assert.Equal(sum.Real, expectedR);
+            Assert.Equal(sum.Imaginary, expectedI);
+        }
+        #endregion
+
         [Theory]
         [InlineData(0, 1, 1)]
         [InlineData(1, 0, 1)]
