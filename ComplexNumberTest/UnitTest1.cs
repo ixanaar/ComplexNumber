@@ -30,9 +30,9 @@ namespace ComplexNumberTest
         {
             Complex c1 = new Complex(c1R, c1I);
             Complex c2 = new Complex(c2R, c2I);
-            Complex sum = c1 - c2;
-            Assert.Equal(sum.Real, expectedR);
-            Assert.Equal(sum.Imaginary, expectedI);
+            Complex difference = c1 - c2;
+            Assert.Equal(difference.Real, expectedR);
+            Assert.Equal(difference.Imaginary, expectedI);
         }
         #endregion
 
